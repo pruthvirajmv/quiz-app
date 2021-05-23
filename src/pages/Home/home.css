@@ -1,0 +1,7 @@
+.card-quiz-level {
+  width: 18rem;
+}
+
+.card-quiz-level:hover {
+  border-color: var(--bs-blue);
+}
