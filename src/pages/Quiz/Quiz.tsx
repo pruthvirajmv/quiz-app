@@ -21,8 +21,6 @@ export function Quiz() {
 
   const [showResult, setShowResult] = useState<boolean>(false);
 
-  console.log(selectedQuiz);
-
   useEffect(() => {
     quizDispatch({ type: "SET_QUIZ", payload: { quiz: quizBeginner } });
   }, []);

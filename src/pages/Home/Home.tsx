@@ -24,7 +24,7 @@ export function Home() {
         </div>
       </div>
 
-      <div className="d-flex gap-5 align-items-center justify-content-center">
+      <div className=" d-flex gap-5 align-items-center justify-content-center container-levels">
         <div className="card card-quiz-level shadow-lg">
           <div className="card-body">
             <h5 className="card-title">Beginner</h5>

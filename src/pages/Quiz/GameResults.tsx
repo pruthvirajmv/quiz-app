@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import "./quiz.css";
 
@@ -8,12 +8,9 @@ import { useQuiz } from "../../context";
 export function GameResults() {
   const {
     quizState: { selectedQuiz },
-    quizDispatch,
   } = useQuiz();
 
   const navigate = useNavigate();
-
-  useEffect(() => quizDispatch({ type: "RESET" }), []);
 
   return (
     <>

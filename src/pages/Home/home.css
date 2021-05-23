@@ -5,3 +5,13 @@
 .card-quiz-level:hover {
   border-color: var(--bs-blue);
 }
+
+.container-levels {
+  flex-direction: column;
+}
+
+@media screen and (min-width: 786px) {
+  .container-levels {
+    flex-direction: row;
+  }
+}
