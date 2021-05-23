@@ -10,6 +10,7 @@ function App() {
 
       <main className="">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/playquiz/:level" element={<Quiz />} />
         </Routes>
