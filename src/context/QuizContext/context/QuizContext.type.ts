@@ -1,33 +1,34 @@
 import { Quiz } from "../../../database/Quiz.type";
+import { QuizDispatchTypeEnum } from "../../../utils";
 
 export type InitialStateType = {
-  selectedQuiz: Quiz | null;
-  currentQuestion: number;
+   selectedQuiz: Quiz | null;
+   currentQuestion: number;
 };
 
 export type QuizContextType = {
-  quizState: InitialStateType;
-  quizDispatch: (action: QuizActionType) => void;
+   quizState: InitialStateType;
+   quizDispatch: (action: QuizActionType) => void;
 };
 
 export type QuizActionType =
-  | {
-      type: "SET_QUIZ";
-      payload: { quiz: Quiz };
-    }
-  | {
-      type: "NEXT_QUESTION";
-    }
-  | {
-      type: "EVALUATE_RESULTS";
-    }
-  | {
-      type: "RESET";
-    }
-  | {
-      type: "SELECT_OPTION";
-      payload: {
-        question: string;
-        option: string;
-      };
-    };
+   | {
+        type: QuizDispatchTypeEnum.SET_QUIZ;
+        payload: { quiz: Quiz };
+     }
+   | {
+        type: QuizDispatchTypeEnum.NEXT_QUESTION;
+     }
+   | {
+        type: QuizDispatchTypeEnum.EVALUATE_RESULTS;
+     }
+   | {
+        type: QuizDispatchTypeEnum.RESET;
+     }
+   | {
+        type: QuizDispatchTypeEnum.SELECT_OPTION;
+        payload: {
+           question: string;
+           option: string;
+        };
+     };
