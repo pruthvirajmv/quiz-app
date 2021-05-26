@@ -16,6 +16,8 @@ export function GamePlay({ game }: GamePropsType) {
       quizDispatch,
    } = useQuiz();
 
+   console.log(game);
+
    return (
       <div className="card shadow p-3 mb-5 bg-body rounded align-middle card-question ">
          <img src={quesHero} className="card-img-top" alt="Question" />
@@ -49,9 +51,7 @@ export function GamePlay({ game }: GamePropsType) {
             <button
                type="button"
                className="btn btn-info"
-               onClick={() =>
-                  quizDispatch({ type: QuizDispatchTypeEnum.NEXT_QUESTION })
-               }>
+               onClick={() => quizDispatch({ type: QuizDispatchTypeEnum.NEXT_QUESTION })}>
                Next
             </button>
          </div>

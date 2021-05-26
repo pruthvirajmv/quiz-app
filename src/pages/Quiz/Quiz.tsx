@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import { useQuiz } from "../../context";
-import { QuestionBank } from "../../database/Quiz.type";
 import { quizBeginner } from "../../database/quizBeginner";
 import { GamePlay } from "./GamePlay";
 import { Instructions } from "./Instructions";
 import { GameResults } from "./GameResults";
 import { QuizDispatchTypeEnum } from "../../utils";
+import { GameStateType, GameReducerType, GameReducerDispatchType } from "./GameReducer.type";
 
 export function Quiz() {
    const {
@@ -14,13 +14,41 @@ export function Quiz() {
       quizDispatch,
    } = useQuiz();
 
-   const [game, setGame] = useState<QuestionBank | null>(null);
+   const gameInitialState: GameStateType = {
+      game: null,
+      instructions: true,
+      start: false,
+      showResult: false,
+   };
 
-   const [instructions, setInstructions] = useState<boolean>(true);
+   const gameReducer = (state: GameStateType, action: GameReducerType): GameStateType => {
+      switch (action.type) {
+         case GameReducerDispatchType.SET_GAME:
+            return {
+               ...state,
+               game: action.payload,
+            };
+         case GameReducerDispatchType.SET_INSTRUCTIONS:
+            return {
+               ...state,
+               instructions: !state.instructions,
+            };
+         case GameReducerDispatchType.SET_START:
+            return {
+               ...state,
+               start: !state.start,
+            };
+         case GameReducerDispatchType.SET_SHOW_RESULT:
+            return {
+               ...state,
+               showResult: !state.showResult,
+            };
+         default:
+            throw new Error("Undefined dispatch type");
+      }
+   };
 
-   const [start, setStart] = useState<boolean>(false);
-
-   const [showResult, setShowResult] = useState<boolean>(false);
+   const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
 
    useEffect(() => {
       quizDispatch({
@@ -30,36 +58,24 @@ export function Quiz() {
    }, []);
 
    useEffect(() => {
-      (() => {
-         const instructionsTimer = setTimeout(() => {
-            setInstructions(false);
-            setStart(true);
-         }, 5000);
-         return instructionsTimer;
-      })();
-   }, []);
-
-   useEffect(() => {
       if (selectedQuiz) {
          if (currentQuestion === selectedQuiz.questions.length) {
-            setShowResult(true);
-            setStart(false);
+            gameDispatch({ type: GameReducerDispatchType.SET_SHOW_RESULT });
+            gameDispatch({ type: GameReducerDispatchType.SET_START });
             quizDispatch({ type: QuizDispatchTypeEnum.EVALUATE_RESULTS });
          }
-         setGame(selectedQuiz.questions[currentQuestion]);
+         gameDispatch({
+            type: GameReducerDispatchType.SET_GAME,
+            payload: selectedQuiz.questions[currentQuestion],
+         });
       }
-   }, [selectedQuiz, currentQuestion]);
+   }, [gameState, currentQuestion]);
 
    return (
       <>
-         {instructions && (
-            <Instructions
-               setStart={setStart}
-               setInstructions={setInstructions}
-            />
-         )}
-         {start && <GamePlay game={game} />}
-         {showResult && <GameResults />}
+         {gameState.instructions && <Instructions dispatch={gameDispatch} />}
+         {gameState.start && <GamePlay game={gameState.game} />}
+         {gameState.showResult && <GameResults />}
       </>
    );
 }
