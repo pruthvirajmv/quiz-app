@@ -6,15 +6,17 @@ export const initialState: InitialStateType = {
    currentQuestion: 0,
 };
 
-export const quizReducer = (
-   state: InitialStateType,
-   action: QuizActionType
-): InitialStateType => {
+export const quizReducer = (state: InitialStateType, action: QuizActionType): InitialStateType => {
    switch (action.type) {
       case QuizDispatchTypeEnum.SET_QUIZ:
          return {
             ...state,
-            selectedQuiz: action.payload.quiz,
+            selectedQuiz: {
+               ...state.selectedQuiz,
+               quizType: action.payload.quizType,
+               questions: action.payload.questions,
+               score: 0,
+            },
          };
 
       case QuizDispatchTypeEnum.NEXT_QUESTION:
@@ -31,22 +33,20 @@ export const quizReducer = (
 
       case QuizDispatchTypeEnum.SELECT_OPTION:
          if (state.selectedQuiz) {
-            const updateSelectedOption = state.selectedQuiz?.questions.map(
-               (question) => {
-                  if (question.question === action.payload.question) {
-                     return {
-                        ...question,
-                        options: question.options.map((option) => {
-                           if (option.option === action.payload.option) {
-                              return { ...option, isSelected: true };
-                           }
-                           return { ...option, isSelected: false };
-                        }),
-                     };
-                  }
-                  return question;
+            const updateSelectedOption = state.selectedQuiz?.questions.map((question) => {
+               if (question.question === action.payload.question) {
+                  return {
+                     ...question,
+                     options: question.options.map((option) => {
+                        if (option.option === action.payload.option) {
+                           return { ...option, isSelected: true };
+                        }
+                        return { ...option, isSelected: false };
+                     }),
+                  };
                }
-            );
+               return question;
+            });
             return {
                ...state,
                selectedQuiz: {
@@ -68,9 +68,7 @@ export const quizReducer = (
                   ...state.selectedQuiz,
                   score: state.selectedQuiz.questions.reduce(
                      (score, question) =>
-                        question.options.some(
-                           (option) => option.isCorrect && option.isSelected
-                        )
+                        question.options.some((option) => option.isCorrect && option.isSelected)
                            ? score + question.points
                            : score - question.negativePoints || 0,
                      0

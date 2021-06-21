@@ -3,7 +3,7 @@ import quesHero from "../../assets/question-hero.svg";
 import "./quiz.css";
 
 import { useQuiz } from "../../context";
-import { QuestionBank } from "../../database/Quiz.type";
+import { QuestionBank } from "../../context/QuizContext/context/QuizContext.type";
 import { QuizDispatchTypeEnum } from "../../utils";
 
 type GamePropsType = {
@@ -16,8 +16,6 @@ export function GamePlay({ game }: GamePropsType) {
       quizDispatch,
    } = useQuiz();
 
-   console.log(game);
-
    return (
       <div className="card shadow p-3 mb-5 bg-body rounded align-middle card-question ">
          <img src={quesHero} className="card-img-top" alt="Question" />
@@ -26,22 +24,26 @@ export function GamePlay({ game }: GamePropsType) {
             <p className="card-text">{game?.question}</p>
          </div>
          <ul className="list-group list-group-flush ">
-            {game?.options.map((option) => {
+            {game?.options.map((current) => {
                return (
-                  <li className="list-group-item">
+                  <li key={current.option} className="list-group-item">
                      <button
                         type="button"
-                        className="btn btn-secondary btn-option"
+                        className={
+                           current.isSelected
+                              ? "btn btn-secondary btn-option"
+                              : "btn btn-outline-secondary btn-option"
+                        }
                         onClick={() =>
                            quizDispatch({
                               type: QuizDispatchTypeEnum.SELECT_OPTION,
                               payload: {
                                  question: game.question,
-                                 option: option.option,
+                                 option: current.option,
                               },
                            })
                         }>
-                        {option.option}
+                        {current.option}
                      </button>
                   </li>
                );

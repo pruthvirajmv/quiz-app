@@ -14,3 +14,11 @@ main {
    color: var(--white-color) !important;
    font-weight: bold;
 }
+
+.max-width-60 {
+   max-width: 60rem;
+}
+
+.max-width-40 {
+   max-width: 40rem;
+}

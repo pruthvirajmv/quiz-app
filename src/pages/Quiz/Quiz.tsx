@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 
 import { useQuiz } from "../../context";
-import { quizBeginner } from "../../database/quizBeginner";
 import { GamePlay } from "./GamePlay";
 import { Instructions } from "./Instructions";
 import { GameResults } from "./GameResults";
@@ -51,13 +50,6 @@ export function Quiz() {
    const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
 
    useEffect(() => {
-      quizDispatch({
-         type: QuizDispatchTypeEnum.SET_QUIZ,
-         payload: { quiz: quizBeginner },
-      });
-   }, []);
-
-   useEffect(() => {
       if (selectedQuiz) {
          if (currentQuestion === selectedQuiz.questions.length) {
             gameDispatch({ type: GameReducerDispatchType.SET_SHOW_RESULT });
@@ -69,7 +61,7 @@ export function Quiz() {
             payload: selectedQuiz.questions[currentQuestion],
          });
       }
-   }, [gameState, currentQuestion]);
+   }, [selectedQuiz, gameState, currentQuestion, gameDispatch, quizDispatch]);
 
    return (
       <>

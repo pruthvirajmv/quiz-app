@@ -1,4 +1,4 @@
-import { QuestionBank } from "../../database/Quiz.type";
+import { QuestionBank } from "../../context/QuizContext/context/QuizContext.type";
 
 export type GameStateType = {
    game: QuestionBank | null;

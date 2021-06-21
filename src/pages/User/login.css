@@ -1,0 +1,22 @@
+.login-layout {
+   margin: auto;
+   margin-top: 5rem;
+   padding: 1rem 1rem;
+   max-width: 25rem;
+   border-radius: 0.5rem;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   background-color: white;
+   text-align: left;
+}
+
+.input-border {
+   border-color: var(--primary-color-app);
+}
+
+.width-100 {
+   width: 100%;
+}
+
+.outline-0 {
+   outline: none;
+}

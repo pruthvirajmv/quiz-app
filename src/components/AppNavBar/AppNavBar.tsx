@@ -13,9 +13,15 @@ export function AppNavBar() {
                </NavLink>
             </div>
             <div className="nav-list">
-               <span>Highscore</span>
-               <span>Standings</span>
-               <i className="fa fa-user fa-lg" aria-hidden="true"></i>
+               <NavLink end to="/highscore" activeClassName="active-page">
+                  <span>Highscore</span>
+               </NavLink>
+               <NavLink end to="/leaderboard" activeClassName="active-page">
+                  <span>Standings</span>
+               </NavLink>
+               <NavLink end to="/profile" activeClassName="active-page">
+                  <i className="fa fa-user fa-lg" aria-hidden="true"></i>
+               </NavLink>
             </div>
          </nav>
       </>
