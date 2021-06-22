@@ -57,12 +57,12 @@ function App() {
          <main className="">
             <Routes>
                <Route path="/" element={<Home />} />
-               <Route path="/playquiz/:level" element={<Quiz />} />
                <Route path="/playquiz/selection" element={<QuizSelection />} />
                <Route path="/login" element={<Login />} />
                <Route path="/register" element={<SignUp />} />
                <Route path="/leaderboard" element={<LeaderBoard />} />
 
+               <PrivateRoute path="/playquiz/:level" element={<Quiz />} />
                <PrivateRoute path="/profile" element={<Profile />} />
                <PrivateRoute path="/resetpassword" element={<ResetPassword />} />
                <PrivateRoute path="/highscore" element={<HighScore />} />
