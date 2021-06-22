@@ -49,7 +49,10 @@ export function QuizSelection() {
                <h5 className="card-title">Intermediate</h5>
                <p className="card-text">Level up your knowledge. Let's check your growth</p>
                <Link to="/playquiz/beginner">
-                  <button type="button" className="btn btn-primary">
+                  <button
+                     type="button"
+                     className="btn btn-primary"
+                     onClick={() => loadQuiz("beginner")}>
                      Play
                   </button>
                </Link>
@@ -61,7 +64,10 @@ export function QuizSelection() {
                <h5 className="card-title">Advance</h5>
                <p className="card-text">This is not the end. Because growing never ends</p>
                <Link to="/playquiz/beginner">
-                  <button type="button" className="btn btn-primary">
+                  <button
+                     type="button"
+                     className="btn btn-primary"
+                     onClick={() => loadQuiz("beginner")}>
                      Play
                   </button>
                </Link>
