@@ -1,17 +1,27 @@
 .card-quiz-level {
-  width: 18rem;
+   width: 18rem;
 }
 
 .card-quiz-level:hover {
-  border-color: var(--bs-blue);
+   border-color: var(--bs-blue);
 }
 
 .container-levels {
-  flex-direction: column;
+   flex-direction: column;
+}
+
+.btn-play {
+   width: 12rem;
+}
+
+.card-video {
+   width: 100;
+   height: auto;
+   max-width: 20rem;
 }
 
 @media screen and (min-width: 786px) {
-  .container-levels {
-    flex-direction: row;
-  }
+   .container-levels {
+      flex-direction: row;
+   }
 }

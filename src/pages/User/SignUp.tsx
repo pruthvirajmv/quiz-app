@@ -15,6 +15,7 @@ export function SignUp() {
    const { authDispatch } = useAuth();
 
    const { authFormState, authFormDispatch } = useAuthForm();
+   console.log(authFormState);
 
    const signUpNewUser = async (name: string, mail: string, password: string) => {
       try {
@@ -46,7 +47,7 @@ export function SignUp() {
             payload: "Password did not matched",
          });
       }
-      signUpNewUser(authFormState.name, authFormState.mail, authFormState.password);
+      signUpNewUser(authFormState.name, authFormState.email, authFormState.password);
    };
 
    return (
@@ -76,7 +77,7 @@ export function SignUp() {
                   placeholder="enter email"
                   onChange={(e) =>
                      authFormDispatch({
-                        type: AuthFormActionTypeEnum.SET_MAIL,
+                        type: AuthFormActionTypeEnum.SET_EMAIL,
                         payload: e.target.value,
                      })
                   }

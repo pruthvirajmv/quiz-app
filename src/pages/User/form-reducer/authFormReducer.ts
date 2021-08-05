@@ -8,10 +8,10 @@ export const authFormReducer = (state: InitialAuthFormState, action: AuthFormAct
             name: action.payload,
          };
 
-      case AuthFormActionTypeEnum.SET_MAIL:
+      case AuthFormActionTypeEnum.SET_EMAIL:
          return {
             ...state,
-            mail: action.payload,
+            email: action.payload,
          };
 
       case AuthFormActionTypeEnum.SET_PASSWORD:

@@ -34,14 +34,14 @@ export function Profile() {
                   Logout
                </button>
             </form>
-            <div className="mt-4">
+            {/* <div className="mt-4">
                Reset password?{" "}
                <button
                   onClick={() => navigate("/resetpassword")}
                   className="btn btn-outline-info btn-sm pt-0 pb-0 text-dark">
                   Reset
                </button>{" "}
-            </div>
+            </div> */}
          </div>
       </>
    );

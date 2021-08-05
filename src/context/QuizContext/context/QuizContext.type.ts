@@ -26,6 +26,8 @@ export type InitialStateType = {
 export type QuizContextType = {
    quizState: InitialStateType;
    quizDispatch: (action: QuizActionType) => void;
+   leaderBoard: LeaderBoardType[];
+   setLeaderBoard: (action: LeaderBoardType[]) => void;
 };
 
 export type QuizActionType =
@@ -49,3 +51,14 @@ export type QuizActionType =
            option: string;
         };
      };
+
+// Leaderboard
+export type Standings = {
+   userName: string;
+   score: number;
+};
+
+export type LeaderBoardType = {
+   level: string;
+   standings: Standings[];
+};

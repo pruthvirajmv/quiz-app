@@ -48,7 +48,7 @@ export function Quiz() {
    };
 
    const [gameState, gameDispatch] = useReducer(gameReducer, gameInitialState);
-
+   // console.log(selectedQuiz);
    useEffect(() => {
       if (selectedQuiz) {
          if (currentQuestion === selectedQuiz.questions.length) {

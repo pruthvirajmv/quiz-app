@@ -17,7 +17,10 @@ export function ResetPassword() {
    const forgotPasswordSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (authFormState.mail === "" || !/^([^@]+)([@]{1})([a-z]+)\.com$/.test(authFormState.mail)) {
+      if (
+         authFormState.email === "" ||
+         !/^([^@]+)([@]{1})([a-z]+)\.com$/.test(authFormState.email)
+      ) {
          return authFormDispatch({
             type: AuthFormActionTypeEnum.SET_ERROR_MESSAGE,
             payload: "please enter valid email",
@@ -42,7 +45,7 @@ export function ResetPassword() {
          payload: "",
       });
 
-      resetForgotPassword(authFormState.mail, authFormState.password);
+      resetForgotPassword(authFormState.email, authFormState.password);
    };
 
    const resetForgotPassword = async (email: string, password: string) => {
@@ -88,7 +91,7 @@ export function ResetPassword() {
                   placeholder="enter email"
                   onChange={(e) =>
                      authFormDispatch({
-                        type: AuthFormActionTypeEnum.SET_MAIL,
+                        type: AuthFormActionTypeEnum.SET_EMAIL,
                         payload: e.target.value,
                      })
                   }

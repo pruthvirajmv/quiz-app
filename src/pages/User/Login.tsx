@@ -25,7 +25,7 @@ export function Login() {
 
    const { authFormState, authFormDispatch } = useAuthForm();
 
-   const logInExistingUser = async (name: string, password: string) => {
+   const logInExistingUser = async (email: string, password: string) => {
       try {
          authFormDispatch({ type: AuthFormActionTypeEnum.SET_LOADING });
          const {
@@ -33,7 +33,7 @@ export function Login() {
          } = await axios({
             method: "POST",
             url: `${backendAPI}/user/login`,
-            data: { username: name, password: password },
+            data: { email, password },
          });
          setupAuthHeaderForServiceCalls(token);
          authDispatch({ type: AuthDispatchTypeEnum.LOAD_TOKEN, payload: { token } });
@@ -54,7 +54,23 @@ export function Login() {
 
    const loginSubmitHandler = (e: React.ChangeEvent<HTMLFormElement>) => {
       e.preventDefault();
-      logInExistingUser(authFormState.name, authFormState.password);
+      logInExistingUser(authFormState.email, authFormState.password);
+   };
+
+   const guestUserLogin = () => {
+      const email = "guestuser@gmail.com";
+      const password = "neoG@2021";
+      authFormDispatch({
+         type: AuthFormActionTypeEnum.SET_EMAIL,
+         payload: email,
+      });
+      authFormDispatch({
+         type: AuthFormActionTypeEnum.SET_PASSWORD,
+         payload: password,
+      });
+      setTimeout(() => {
+         logInExistingUser(email, password);
+      }, 1000);
    };
 
    return (
@@ -62,14 +78,15 @@ export function Login() {
          <h2 className="text-center">User Login</h2>
          <form onSubmit={loginSubmitHandler}>
             <div className="mb-3">
-               <label className="form-label ">User Name</label>
+               <label className="form-label ">User E-mail</label>
                <input
                   type="text"
                   className="form-control input-border "
-                  placeholder="enter username"
+                  placeholder="enter registered email"
+                  value={authFormState.email}
                   onChange={(e) =>
                      authFormDispatch({
-                        type: AuthFormActionTypeEnum.SET_NAME,
+                        type: AuthFormActionTypeEnum.SET_EMAIL,
                         payload: e.target.value,
                      })
                   }
@@ -82,6 +99,7 @@ export function Login() {
                   <input
                      className=" border-0 width-100 outline-0"
                      placeholder="enter password"
+                     value={authFormState.password}
                      minLength={8}
                      required
                      onChange={(e) =>
@@ -120,20 +138,20 @@ export function Login() {
             <p className="mt-2 text-danger text-center fs-6">{authFormState.errorMessage}</p>
          </form>
          <div className="mb-2 mt-1 fs-5">
-            Forgot your password?{" "}
+            play as a Guest?
             <button
-               onClick={() => navigate("/reset")}
+               onClick={guestUserLogin}
                className="btn btn-outline-info btn-sm pt-0 pb-0 text-dark">
-               Reset
-            </button>{" "}
+               Guest
+            </button>
          </div>
          <div className="fs-5">
-            Not a user yet?{" "}
+            Not a user yet?
             <button
                onClick={() => navigate("/register")}
                className="btn btn-outline-info btn-sm pt-0 pb-0 text-dark">
                Sign Up
-            </button>{" "}
+            </button>
          </div>
       </div>
    );

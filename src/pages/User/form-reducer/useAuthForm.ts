@@ -5,7 +5,7 @@ import { authFormReducer } from "./authFormReducer";
 export default function useAuthForm() {
    const authFormInitialState: InitialAuthFormState = {
       name: "",
-      mail: "",
+      email: "",
       password: "",
       confirmPassword: "",
       showPassword: false,

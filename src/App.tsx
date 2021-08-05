@@ -1,5 +1,5 @@
 import "./App.css";
-import { AppNavBar } from "./components";
+import { AppNavBar, Footer } from "./components";
 import { Routes, Route } from "react-router-dom";
 import {
    Home,
@@ -68,6 +68,7 @@ function App() {
                <PrivateRoute path="/highscore" element={<HighScore />} />
             </Routes>
          </main>
+         <Footer />
       </div>
    );
 }

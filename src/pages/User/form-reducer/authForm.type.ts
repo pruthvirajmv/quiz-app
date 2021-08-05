@@ -1,6 +1,6 @@
 export type InitialAuthFormState = {
    name: string;
-   mail: string;
+   email: string;
    password: string;
    confirmPassword: string;
    showPassword: boolean;
@@ -11,7 +11,7 @@ export type InitialAuthFormState = {
 
 export enum AuthFormActionTypeEnum {
    SET_NAME = "SET_NAME",
-   SET_MAIL = "SET_MAIL",
+   SET_EMAIL = "SET_EMAIL",
    SET_PASSWORD = "SET_PASSWORD",
    SET_CONFIRM_PASSWORD = "SET_CONFIRM_PASSWORD",
    TOGGLE_SHOW_PASSOWRD = "TOGGLE_SHOW_PASSOWRD",
@@ -27,7 +27,7 @@ export type AuthFormAction =
         payload: string;
      }
    | {
-        type: AuthFormActionTypeEnum.SET_MAIL;
+        type: AuthFormActionTypeEnum.SET_EMAIL;
         payload: string;
      }
    | {

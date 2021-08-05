@@ -13,6 +13,7 @@ export function GameResults() {
    const { authDispatch } = useAuth();
    const {
       quizState: { selectedQuiz },
+      setLeaderBoard,
    } = useQuiz();
 
    useEffect(() => {
@@ -32,6 +33,21 @@ export function GameResults() {
          }
       })();
    }, [selectedQuiz, authDispatch]);
+
+   useEffect(() => {
+      console.log(selectedQuiz);
+
+      (async () => {
+         try {
+            const { data } = await axios({
+               method: "POST",
+               url: `${backendAPI}/leaderboard`,
+               data: { attemptedLevel: selectedQuiz?.quizType, newScore: selectedQuiz?.score },
+            });
+            setLeaderBoard(data.leaderBoard);
+         } catch (error) {}
+      })();
+   }, [selectedQuiz, setLeaderBoard]);
 
    return (
       <>

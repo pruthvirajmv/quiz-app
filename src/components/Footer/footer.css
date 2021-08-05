@@ -1,0 +1,17 @@
+.footer-nav {
+   position: relative;
+   width: 100%;
+   padding: 1rem 1rem;
+   margin-top: 2rem;
+}
+
+.footer-nav .nav-list {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.nav-dark {
+   background-color: black;
+   color: #01dcfc;
+}

@@ -1,27 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useQuiz } from "../../context";
 import { backendAPI, checkError } from "../../utils";
 
-export type Standings = {
-   userName: string;
-   score: number;
-};
-
-export type LeaderBoardType = {
-   level: string;
-   standings: Standings[];
-};
-
 export const LeaderBoard = () => {
-   const initialLeaderBoard: LeaderBoardType[] = [
-      {
-         level: "",
-         standings: [],
-      },
-   ];
-
-   const [leaderBoard, setLeaderBoard] = useState<LeaderBoardType[]>(initialLeaderBoard);
+   const { leaderBoard, setLeaderBoard } = useQuiz();
 
    const getLeaderBoard = async () => {
       try {
@@ -38,23 +21,6 @@ export const LeaderBoard = () => {
    useEffect(() => {
       getLeaderBoard();
    }, []);
-
-   const {
-      quizState: { selectedQuiz },
-   } = useQuiz();
-
-   useEffect(() => {
-      (async () => {
-         try {
-            const { data } = await axios({
-               method: "POST",
-               url: `${backendAPI}/leaderboard`,
-               data: { attemptedLevel: selectedQuiz?.quizType, score: selectedQuiz?.score },
-            });
-            setLeaderBoard(data.leaderBoard);
-         } catch (error) {}
-      })();
-   }, [selectedQuiz]);
 
    return (
       <>
