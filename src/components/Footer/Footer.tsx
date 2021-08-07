@@ -4,7 +4,7 @@ export function Footer() {
    return (
       <>
          <footer className="footer-nav nav-dark ">
-            <h5>made by pruthvirajmv @neoGcamp</h5>
+            <div>made by pruthvirajmv @neoGcamp</div>
             <ul className="nav-list">
                <li>
                   <a

@@ -12,6 +12,14 @@
 
 .btn-play {
    width: 12rem;
+   background-color: var(--primary-color-app);
+   border-color: var(--primary-color-app);
+}
+
+.btn-play:hover {
+   background-color: rgba(0, 0, 0, 0.75);
+   border-color: var(--primary-color-app);
+   color: var(--primary-color-app);
 }
 
 .card-video {

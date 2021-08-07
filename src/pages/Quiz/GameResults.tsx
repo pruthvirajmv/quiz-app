@@ -17,36 +17,38 @@ export function GameResults() {
    } = useQuiz();
 
    useEffect(() => {
-      (async () => {
-         try {
-            const { data } = await axios({
-               method: "POST",
-               url: `${backendAPI}/user/highscore`,
-               data: { attemptedLevel: selectedQuiz?.quizType, newScore: selectedQuiz?.score },
-            });
-            authDispatch({
-               type: AuthDispatchTypeEnum.UPDATE_ATTEMPTED_LEVEL_HIGH_SCORE,
-               payload: { highScore: data.newHighScore },
-            });
-         } catch (error) {
-            console.error(error);
-         }
-      })();
+      selectedQuiz !== null &&
+         selectedQuiz?.score > 0 &&
+         (async () => {
+            try {
+               const { data } = await axios({
+                  method: "POST",
+                  url: `${backendAPI}/user/highscore`,
+                  data: { attemptedLevel: selectedQuiz?.quizType, newScore: selectedQuiz?.score },
+               });
+               authDispatch({
+                  type: AuthDispatchTypeEnum.UPDATE_ATTEMPTED_LEVEL_HIGH_SCORE,
+                  payload: { highScore: data.newHighScore },
+               });
+            } catch (error) {
+               console.error(error);
+            }
+         })();
    }, [selectedQuiz, authDispatch]);
 
    useEffect(() => {
-      console.log(selectedQuiz);
-
-      (async () => {
-         try {
-            const { data } = await axios({
-               method: "POST",
-               url: `${backendAPI}/leaderboard`,
-               data: { attemptedLevel: selectedQuiz?.quizType, newScore: selectedQuiz?.score },
-            });
-            setLeaderBoard(data.leaderBoard);
-         } catch (error) {}
-      })();
+      selectedQuiz !== null &&
+         selectedQuiz?.score > 0 &&
+         (async () => {
+            try {
+               const { data } = await axios({
+                  method: "POST",
+                  url: `${backendAPI}/leaderboard`,
+                  data: { attemptedLevel: selectedQuiz?.quizType, newScore: selectedQuiz?.score },
+               });
+               setLeaderBoard(data.leaderBoard);
+            } catch (error) {}
+         })();
    }, [selectedQuiz, setLeaderBoard]);
 
    return (

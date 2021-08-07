@@ -15,7 +15,6 @@ export function SignUp() {
    const { authDispatch } = useAuth();
 
    const { authFormState, authFormDispatch } = useAuthForm();
-   console.log(authFormState);
 
    const signUpNewUser = async (name: string, mail: string, password: string) => {
       try {

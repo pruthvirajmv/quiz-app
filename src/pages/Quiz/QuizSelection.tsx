@@ -41,9 +41,9 @@ export function QuizSelection() {
                <Link to="/playquiz/beginner">
                   <button
                      type="button"
-                     className="btn btn-primary"
+                     className="btn btn-primary btn-play"
                      onClick={() => loadQuiz("beginner")}>
-                     Play
+                     Start Quiz
                   </button>
                </Link>
             </div>
@@ -57,9 +57,9 @@ export function QuizSelection() {
                <Link to="/playquiz/intermediate">
                   <button
                      type="button"
-                     className="btn btn-primary"
+                     className="btn btn-primary btn-play"
                      onClick={() => loadQuiz("intermediate")}>
-                     Play
+                     Start Quiz
                   </button>
                </Link>
             </div>
@@ -73,9 +73,9 @@ export function QuizSelection() {
                <Link to="/playquiz/advance">
                   <button
                      type="button"
-                     className="btn btn-primary"
+                     className="btn btn-primary btn-play"
                      onClick={() => loadQuiz("advance")}>
-                     Play
+                     Start Quiz
                   </button>
                </Link>
             </div>

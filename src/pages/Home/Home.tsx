@@ -18,13 +18,13 @@ export function Home() {
                   <img className="img-fluid" src={hero} alt={"quiz hero"} />
                </div>
                <div className="col-md-8 align-self-center">
-                  <p className="display-6 text-start ">
+                  <h3 className="text-start ">
                      How well you know about the badminton game? Play quiz, evaluate, learn and grow
-                  </p>
+                  </h3>
                   <div className="p-5">
                      <Link to="/playquiz/selection">
-                        <button type="button" className="btn btn-primary btn-play">
-                           Play
+                        <button type="button" className="btn btn-primary btn-play fs-5 ">
+                           PLAY
                         </button>
                      </Link>
                   </div>
