@@ -1,0 +1,7 @@
+export enum QuizDispatchTypeEnum {
+   SET_QUIZ = "SET_QUIZ",
+   NEXT_QUESTION = "NEXT_QUESTION",
+   SELECT_OPTION = "SELECT_OPTION",
+   EVALUATE_RESULTS = "EVALUATE_RESULTS",
+   RESET = "REST",
+}

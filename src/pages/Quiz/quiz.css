@@ -1,0 +1,25 @@
+.card-question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 25rem;
+  height: 100%;
+  margin: auto;
+}
+
+.btn-option {
+  width: 10rem;
+}
+
+.card-instructions {
+  max-width: 30rem;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.card-report {
+  max-width: 25rem;
+  margin: auto;
+  margin-bottom: 2rem;
+}

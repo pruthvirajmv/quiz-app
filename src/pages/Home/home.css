@@ -1,0 +1,35 @@
+.card-quiz-level {
+   width: 18rem;
+}
+
+.card-quiz-level:hover {
+   border-color: var(--bs-blue);
+}
+
+.container-levels {
+   flex-direction: column;
+}
+
+.btn-play {
+   width: 12rem;
+   background-color: var(--primary-color-app);
+   border-color: var(--primary-color-app);
+}
+
+.btn-play:hover {
+   background-color: rgba(0, 0, 0, 0.75);
+   border-color: var(--primary-color-app);
+   color: var(--primary-color-app);
+}
+
+.card-video {
+   width: 100;
+   height: auto;
+   max-width: 20rem;
+}
+
+@media screen and (min-width: 786px) {
+   .container-levels {
+      flex-direction: row;
+   }
+}
